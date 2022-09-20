@@ -1,0 +1,19 @@
+
+.parent{
+    background-color: cadetblue;
+    height: 100vh;
+    width: 100vw;
+    display: flex;align-items: center;
+}
+.child1{
+    background-color: brown;
+    height: 100%;
+    width: 15%;
+}
+button{
+    color:purple;
+    background-color: peru;
+}
+.child2{
+    align-items: center;
+}
