@@ -1,53 +1,93 @@
 
- <div class="topnav">
-<form>
-    <label>Firstname:</label>
-    <input type="text">
-    <br><br>
-    <label>Lastname:</label>
-    <input type="text" >
-    <br><br>
-    <label >Phoneno:</label>
-    <input type="number">
+ 
+<div [formGroup]="studentForm" class="row" >
+  <form >
+    
+    <label class="col-sm-6">Name:</label>
+    <input type="text" formControlName="name">
     <br>
-    <label>Gender:</label><br>
-    <input type="radio"  name="gender" value="Male" >
-    <label for="male">Male</label>
-    <br>
-   <input type="radio"  name="gender" value="Female">
-   <label for="female">Female</label> 
-   <br><br>
-   <label>Age:</label>
-   <input type="number">
+    <label class="col-sm-6">Gender:</label>
+    <input type="radio"  name="gender" formControlName="gender" >
+    <label class="col-sm-4">Male</label>
+   <input type="radio"  name="gender" formControlName="gender">
+   <label>Female</label> 
+   <br>
+   <label class="col-sm-6">Phoneno:</label>
+    <input type="number" formControlName="phone" ><br>
+    <label class="col-sm-6">Email:</label>
+    <input type="text"  formControlName="email"><br>
+    <label class="col-sm-6">Batch:</label>
+    <input type="date" formControlName="batch" >
+    
+    <div formArrayName="address" class="row formArray">
+    <label class="col-sm-6">City:</label>
+    <input type="text" formControlName="city">
     <br><br>
-    <label>Email:</label>
-    <input type="text">
+    <label class="col-sm-6">Mandal:</label>
+    <input type="text" formControlName="mandal" >
     <br><br>
-    <label>Batch:</label>
-    <input type="text" >
+    <label class="col-sm-4">District:</label>
+    <input type="text" formControlName="district">
     <br><br>
-    <label>Address:</label>
-    <label>State:</label>
-    <input type="text" >
+    <label class="col-sm-4">State:</label>
+    <input type="text" formControlName="state" >
     <br><br>
-    <label>Education:</label>
-    <input type="text">
+    <label class="col-sm-4" >Pin:</label>
+    <input type="number" formControlName="pin">
     <br><br>
-    <button class="btn btn-success" (click)="add()">Register</button>
-</form>
+  </div>
+  <button (click)="add()">Add Education:</button>
 
-       <tr *ngFor="let student of students,let i=index">
-           <td>{{ student.firstname }}</td>
-           <td>{{ student.lastname }}</td>
-           <td>{{student.phone}}</td>
-           <td>{{ student.gender }}</td>
-           <td>{{ student.age  }}</td>
-           <td>{{ student.mobile }}</td>
-           <td>{{ student.email }}</td>
-           <td>{{ student.batch }}</td>
-           <td>{{ student.address }}</td>
-           <td>{{ student.education}}</td>
-           <td><button class="btn btn-danger"(click)="delete(i)">Delete</button></td>
-        </tr>
+  <div formArray="educations">
+    <div *ngFor="let student of studentFormArray.controls; let i=index">
+      <div formGroupName="{{i}}">
+
+    <label class="col-sm-4">Qualification:</label>
+    <input type="text"formControlName="qualification">
+    <br>
+    <label class="col-sm-4">Year:</label>
+    <input type="date"formControlName="year">
+    <br>
+    <label class="col-sm-4">Percentage:</label>
+    <input type="number" formControlName="percentage">
+    <br><br>
+    <label class="col-sm-4">CompanyName:</label>
+    <input type="text" formControlName="companyname">
+    <br>
+    <label class="col-sm-4">Location:</label>
+    <input type="text" formControlName="location">
+    <br>
+    <label class="col-sm-4">Package:</label>
+    <input type="number" formControlName="package">
+    <br>
+    <label class="col-sm-4">OfferDate:</label>
+    <input type="date" formControlName="offerdate">
+    <br><br>
+    <button (click)="remove(i)">Remove</button>
+  </div>
+</div>
+</div>
+  <br>
+  <label>SourceType :</label>
+    <label>Ditrct</label>
+    <input type="radio" name="source" value="from" formControlName="sourceType">
+    <label>Referral</label>
+    <input type="radio" name="source" value="referal" formControlName="sourceType"><br>
+
+    <div *ngIf="studentForm.get('sourceType')?.value=='from'">
+       <label>Social media</label>
+       <input type='radio' formControlName="sourceFrom">
+       <label>office</label>
+       <input type='radio' formControlName="sourceFrom"><br>
+    </div>
+    <div *ngIf="studentForm.get('sourceType')?.value=='referal'">
+       <label>Referalname</label>
+       <input type="text" formControlName="referalName">
+    </div><br>
+    
    
-   </div>
+    <button (click)="submit()">Submit</button>
+   <br>
+</form>
+</div>
+

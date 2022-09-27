@@ -1,13 +1,13 @@
 
 .parent{
     background-color: cadetblue;
-    height: 100vh;
+    height: 450vh;
     width: 100vw;
-    display: flex;align-items: center;
+    display: flex;
 }
 .child1{
     background-color: brown;
-    height: 100%;
+    height: 120%;
     width: 15%;
 }
 button{
@@ -16,4 +16,7 @@ button{
 }
 .child2{
     align-items: center;
+    height: 100%;
+
 }
+

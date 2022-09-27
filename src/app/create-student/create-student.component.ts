@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Student } from '../student';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { StudentService } from '../student.service';
+
 
 @Component({
   selector: 'app-create-student',
@@ -7,45 +10,75 @@ import { Student } from '../student';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
-  public firstname:string='';
-  public lastname :string='';
-  public phone  : number=0;
-  public gender   :string='';
-  public male     :string='';
-  public female   :string='';
-  public age      :number=0;
-  public mobile   :number=0;
-  public email    :string='';
-  public batch    :string='';
-  public address  :string='';
-  public education:string='';
+  
+  public studentForm :FormGroup = new FormGroup({
+    name : new FormControl(),
+    phone : new FormControl(),
+    email : new FormControl(),
+    batch : new FormControl(),
 
-  public students:Student[]=[];
+    address : new FormGroup({
+      city: new FormControl(),
+      mandal:  new FormControl(),
+      district :new FormControl(),
+      state :new FormControl(),
+      pin : new FormControl(),
+    }),
+  educations:new FormArray([]),
+    
+   company: new FormGroup({
+     companyname:new FormControl(),
+     location : new FormControl(),
+     package :new FormControl(),
+     offerdate :new FormControl(),
+  })
+});
+get studentFormArray(){
+  return this.studentForm.get('educations')as FormArray;
+}
+ public id: string='';
+ public isEdit : boolean=false; 
 
+constructor(private _studentService:StudentService,private _activatedRoute: ActivatedRoute ) { 
+   this._activatedRoute.params.subscribe(
+    (data: any) => {
+      if (data.id) {
+        this.id = data.id;
+        this.isEdit = true;
+          }
+      else {
+        this.isEdit = false;
+      }
+      this._studentService.createStudent(data.id).subscribe(
+        (data2: any) => {
+          this.studentForm.patchValue(data2);
+        }
+      )
+    }
+  )
+}
 
-  constructor() { }
+ngOnInit(): void {
+}
 
-  ngOnInit(): void {
-  }
+add() {
+  this.studentFormArray.push(
 
-  add(){
-    this.students['push'](
-      {
-      'firstname':this.firstname,
-      'lastname' :this.lastname,
-      'phone'    :this.phone,
-      'gender'   :this.gender,
-      'age'      :this.age,  
-      'mobile'   :this.mobile,
-      'email'    :this.email,
-      'batch'    :this.batch,
-      'address'  :this.address,
-      'education':this.education
-    }  
- );
- }
- delete(i:number){
-  this.students.splice(i,1);
- }
+    new FormGroup({
+      qualification: new FormControl(),
+      year: new FormControl(),
+      percentage: new FormControl()
+    })
+  )
+}
+
+submit() {
+  console.log(this.studentForm.value);
 
 }
+remove(i : number) {
+  this.studentFormArray.removeAt(i);
+}
+
+}
+

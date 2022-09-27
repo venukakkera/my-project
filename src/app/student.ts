@@ -1,13 +1,36 @@
+import { NumberSymbol } from "@angular/common";
+
 export interface Student {
-    
-firstname:string;
-lastname:string;
-phone:number;
+
+createdAt:string;
+name:string;
+avatar:string;
+id:string;
 gender:string;
-age:number;
-mobile:number;
+mobile : number;
 email:string;
 batch:string;
-address:string;
-education: string;
-}
+address:{
+city:string;
+mandal:string;
+district: string;
+state: string ;
+pin:string;
+};
+educations:[
+    {qualification: string,year: number, percentage: number},
+    {qualification:string,year: number, percentage: number},
+    
+];
+company: {
+    companyname: string;
+    location: string;
+    package: Number;
+    offerDate:number;
+    },
+    sourceType: string;
+    direct:string;
+    referalname:string;
+    source:string
+    }
+

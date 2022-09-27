@@ -1,8 +1,28 @@
 
-.topnav{
-    height: 64%;
-    width: 50%;
+
+form{
     align-items: center;
-    color:black;
-    justify-content: center;
+    height: 80%;
+    width: 50%;
+    border-color:black;
+    margin-left: 300px;
+    margin-top: 50px;
+    background-color: gray;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+}
+h4{
+    text-decoration: underline;
+    letter-spacing: 5px;
+    font-weight: 500 ;
+}
+label{
+    align-items: center;
+    margin: 5px;
+    font-weight: bold;
+}
+input{
+    margin: 3px;
+    border-radius: 5px;
 }

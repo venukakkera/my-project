@@ -2,19 +2,23 @@
     
     <div class="parent">
         <div class="child1">
-            <form >
-                <h2>Welcome to Login Page</h2>
+                <h2><mark>Welcome to Login Page</mark></h2>
                 <br>
-    <label >Name:</label>
-    <input type="text">
-    <br><br>
-    <label>Password:</label>
-    <input type="password">
-    <br>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                    <label for="name"> Name </label>
+                    </div>
+                    <div class="col-sm-8">
+                    <input type="password" id="name" class="form-control" placeholder="Enter name" name="name">
+                    </div>
+                    <label for="password">Password </label>
+                </div>
+                <div class="col-sm-8">
+                <input type="password" id="password" class="form-control" placeholder="Enter password" name="password">
+                </div>
     <br>
     <button (click)="submit()">Login</button>
-
-    </form>
-        
+      
+    
     </div>
 

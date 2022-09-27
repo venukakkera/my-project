@@ -7,9 +7,12 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
+  {path:'',component:LoginComponent},
+
   {path:'dashboard',component:DashboardComponent,
-  children :[{path:'createstudent',component:CreateStudentComponent},
-  {path:'allstudents',component:AllStudentsComponent}]}
+  children :[
+    {path:'createstudent',component:CreateStudentComponent},
+    {path:'allstudents',component:AllStudentsComponent}]}
   
 ];
 

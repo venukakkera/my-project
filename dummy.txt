@@ -1,0 +1,2 @@
+
+<p [ngStyle]="{ 'background-color': isValid? 'green' : red }"> content </p>

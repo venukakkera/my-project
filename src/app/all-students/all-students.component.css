@@ -1,0 +1,13 @@
+
+option{
+    color:palegreen;
+    background-color: black;
+}
+table{
+    border: 10px solid green;
+    margin: 30px;
+    border-radius: 30px;
+    padding: 30px;
+}
+
+ 

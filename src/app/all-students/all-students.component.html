@@ -1,1 +1,57 @@
-<p>all-students works!</p>
+
+<br>
+<input type="text" [(ngModel)]="filterTerm">
+<button (click)="filter()">Filter</button><br>
+
+<select [(ngModel)]='column' >
+     <option>Name</option>
+     <option>id</option>
+     <option>email</option>
+
+</select>
+<select [(ngModel)]="order">
+       <option>asc</option>
+       <option>desc</option>
+
+</select>
+<button (click)="sort()">Sort</button>
+
+<table border="2" class="table">
+    <thead>
+            <th>Name:</th>
+            <th>id:</th>
+            <th>gender:</th>
+            <th>Phone:</th>
+            <th>Batch:</th>
+            <th>Company-Location:</th>
+            <th>Package:</th>
+            <th>Address:</th>
+            <th>Avatar:</th>
+            <th>Actions:</th>
+    </thead>
+ <tbody>
+    <tr *ngFor="let student of students">
+        <td>{{ student.name }}</td>
+        <td>{{ student.id}}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.mobile  }}</td>
+        <td>{{ student.batch }}</td>
+        <td>{{ student.company.location}}</td>
+        <td>{{ student.company.package }}</td>
+        <td>{{ student.address.city }}</td>
+        <td><img src='{{ student.avatar }}'></td>
+
+        <button class="btn btn-success" (click)="delete(student.id)">Delete</button>
+
+             <button class="btn btn-danger" (click)="view()">View</button>
+             <button class="btn btn-primary" (click)="edit()">Edit</button>
+     </tr>
+ </tbody>
+</table>
+<ol class="pagination">
+    <li class="page-item" (click)="page(1)"><a class="page-link">1</a></li>
+    <li class="page-item" (click)="page(2)"><a class="page-link">2</a></li>
+    <li class="page-item" (click)="page(3)"><a class="page-link">3</a></li>
+    <li class="page-item" (click)="page(4)"><a class="page-link">4</a></li>
+  </ol>
+  
